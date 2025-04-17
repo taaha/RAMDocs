@@ -1,7 +1,6 @@
-# Retrieval-Augmented Generation with Conflicting Evidence
-Code for the paper [Retrieval-Augmented Generation with Conflicting Evidence]()
-
+# [Retrieval-Augmented Generation with Conflicting Evidence]()
 by [Han Wang](https://hannight.github.io/), [Archiki Prasad](https://archiki.github.io/), [Elias Stengel-Eskin](https://esteng.github.io/), [Mohit Bansal](https://www.cs.unc.edu/~mbansal/).
+* 🤗 [**RAMDocs Dataset**](https://huggingface.co/datasets/HanNight/RAMDocs)
 
 ![Image](https://github.com/user-attachments/assets/d80f8455-0c00-4c67-b570-885c3aa3f992)
 
