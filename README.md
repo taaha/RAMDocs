@@ -1,4 +1,4 @@
-# [Retrieval-Augmented Generation with Conflicting Evidence]()
+# [Retrieval-Augmented Generation with Conflicting Evidence](https://arxiv.org/abs/2504.13079)
 by [Han Wang](https://hannight.github.io/), [Archiki Prasad](https://archiki.github.io/), [Elias Stengel-Eskin](https://esteng.github.io/), [Mohit Bansal](https://www.cs.unc.edu/~mbansal/).
 * 🤗 [**RAMDocs Dataset**](https://huggingface.co/datasets/HanNight/RAMDocs)
 
@@ -65,5 +65,6 @@ We sincerely thank the authors of [AmbigDocs](https://arxiv.org/abs/2404.12447) 
   title={Retrieval-Augmented Generation with Conflicting Evidence},
   author={Han Wang and Archiki Prasad and Elias Stengel-Eskin and Mohit Bansal},
   year={2025}
+  journal={arXiv preprint arXiv:2504.13079}
 }
 ```
