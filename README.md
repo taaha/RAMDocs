@@ -41,11 +41,7 @@ pip install -r requirements.txt
 ### Run MADAM-RAG
 To run the MADAM-RAG framework, you can use the following example command:
 ```bash
-CUDA_VISIBLE_DEVICES=0
-HF_TOKEN=your_huggingface_token
-python run_madam_rag.py \
-    --model_name meta-llama/Llama-3.3-70B-Instruct \
-    --dataset_path RAMDocs_test.jsonl \
+python run_madam_rag.py --model_name meta-llama/Llama-3.3-70B-Instruct --data_path RAMDocs_test.jsonl
 ```
 
 We explain arguments below (some are not shown in the example):

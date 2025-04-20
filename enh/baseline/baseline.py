@@ -10,6 +10,10 @@ from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, BitsAndB
 from openai import OpenAI
 from decouple import config
 import logging
+from promptflow.tracing import start_trace
+
+# instrument OpenAI
+start_trace()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -40,6 +44,7 @@ def call_llm(prompt: str, model_id: str = "meta-llama/llama-3.3-70b-instruct:fre
         }
     ],
     max_tokens=max_new_tokens,
+    temperature=0.0,
     )
     logger.info(completion)
     return completion.choices[0].message.content
@@ -147,15 +152,34 @@ def multi_agent_debate(query: str, documents: List[str], model_id: str, num_roun
     return records
 
 
+def baseline(entry: dict, model_id: str):
+    query = entry["question"]
+    documents = [doc["text"] for doc in entry["documents"]]
+    doc_prompt = ""
+    for i, doc in enumerate(documents):
+        doc_prompt += f"""
+-----------------------------------------
+## Document {i+1}:
+{doc}
+-----------------------------------------
+"""
+    prompt = f"""
+Question: {query}
+
+{doc_prompt}
+"""
+    output = call_llm(prompt, model_id)
+    entry["llm_answer"] = output
+    return entry
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", type=str, default="meta-llama/llama-3.3-70b-instruct:free")
+    parser.add_argument("--model_name", type=str, default="meta-llama/llama-3.3-70b-instruct")
     parser.add_argument("--cache_dir", type=str, default="./cache")
-    parser.add_argument("--data_path", type=str, required=True)
-    parser.add_argument("--num_rounds", type=int, default=3)
+    parser.add_argument("--data_path", type=str, default="../../RAMDocs_test.jsonl")
     args = parser.parse_args()
 
-    args.output_path = f"{args.data_path}_madam_rag_{args.model_name.split('/')[-1]}_rounds{args.num_rounds}.jsonl"
+    args.output_path = f"results//baseline_{args.model_name.split('/')[-1]}.jsonl"
 
     model_id = args.model_name
 
@@ -163,13 +187,16 @@ def main():
         all_data = [json.loads(line.strip()) for line in f]
 
     results = []
-    for i in tqdm(range(len(all_data[:1])), desc="Running MADAM-RAG"):
+    for i in tqdm(range(len(all_data)), desc="Running baseline"):
         entry = all_data[i]
         documents = [doc["text"] for doc in entry["documents"]]
-        result = multi_agent_debate(entry["question"], documents, model_id, num_rounds=args.num_rounds)
+        # result = baseline(entry["question"], documents, model_id)
+        result = baseline(entry, model_id)
         results.append(result)
         logger.info(result)
+        # break
 
+    os.makedirs(os.path.dirname(args.output_path), exist_ok=True)
     with open(args.output_path, "w") as f:
         for result in results:
             f.write(json.dumps(result) + "\n")
