@@ -2,4 +2,6 @@
 Tried test time prompts (not in detail)
 
 ### Jun 29
-Cleaned Structute
+- Cleaned Structure
+- Baseline inference and evaluation pipeline
+- Baseline accuracy - 0.184
