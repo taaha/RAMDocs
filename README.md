@@ -13,7 +13,9 @@ Tried test time prompts manually iterated (not in detail)
 - Baseline inference and evaluation pipeline
 - Baseline accuracy - 0.184
 - Implemented dspy baseline
-- dspy baseline accuracy - 16%
+- dspy predict baseline accuracy - 16%
 - after dspy simple optimiser MIRO_v2 - 18% - few shot example generation error
 - resolved error MIRO_v2 - 22% - saved as miro_v2_predict.json
-- added miro_v2_cot file (WIP)
+- added miro_v2_cot file
+- dspy cot basleine accuracy - 18%
+- dspy cot optimised - 18% - not generating few shot examples - evaluation-metric should be reconsidered?
