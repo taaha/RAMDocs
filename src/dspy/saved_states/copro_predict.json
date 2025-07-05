@@ -1,0 +1,34 @@
+{
+  "traces": [],
+  "train": [],
+  "demos": [],
+  "signature": {
+    "instructions": "Carefully read and understand the provided documents. Then, answer the question with accurate, relevant, and concise information. Make sure to support your response with direct evidence from the documents where applicable.",
+    "fields": [
+      {
+        "prefix": "Question:",
+        "description": "${question}"
+      },
+      {
+        "prefix": "Context:",
+        "description": "${context}"
+      },
+      {
+        "prefix": "Correct Answers:",
+        "description": "${correct_answers}"
+      },
+      {
+        "prefix": "Based on the provided documents, here is the answer:",
+        "description": "${explanation}"
+      }
+    ]
+  },
+  "lm": null,
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "2.6.27",
+      "cloudpickle": "3.1"
+    }
+  }
+}

@@ -19,3 +19,8 @@ Tried test time prompts manually iterated (not in detail)
 - added miro_v2_cot file
 - dspy cot basleine accuracy - 18%
 - dspy cot optimised - 18% - not generating few shot examples - evaluation-metric should be reconsidered?
+- simba predict - 22%
+- simba cot - 18%
+- threatened lm with miro predict - 20%
+- copro predict - 18%
+- copro predict with miro few shots - 18 %
